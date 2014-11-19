@@ -4,7 +4,9 @@
   "main": "web/basic-server.js",
   "author": "Hack Reactor",
   "license": "Copyright 2013, Hack Reactor. All rights reserved.",
-  "dependencies": {},
+  "dependencies": {
+    "chai": "^1.10.0"
+  },
   "devDependencies": {
     "chai": "^1.9.0",
     "cron": "^1.0.3",
@@ -14,6 +16,6 @@
     "underscore": "^1.6.0"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test/test.js"
+    "test": "mocha --bail ./test/test.js"
   }
 }
