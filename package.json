@@ -6,6 +6,7 @@
   "license": "Copyright 2013, Hack Reactor. All rights reserved.",
   "dependencies": {
     "chai": "^1.10.0",
+    "http-request": "^0.7.0",
     "jquery": "^2.1.1",
     "mocha": "^2.0.1"
   },
@@ -15,7 +16,8 @@
     "mocha": "^1.21.4",
     "q": "^1.0.0",
     "request": "^2.34.0",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "http-request": "*"
   },
   "scripts": {
     "test": "mocha --bail ./test/test.js"

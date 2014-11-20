@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
-
+var httpRequest = require('http-request');
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
  * Consider using the `paths` object below to store frequently used file paths. This way,
@@ -27,30 +27,16 @@ exports.initialize = function(pathsObj){
 
 // reads from site.txt
 exports.readListOfUrls = function(callback){
-  fs.readFile('../archives/sites.txt', "utf8", function (err, data) {
-    if (err) {
-      throw err;
-    }
-    // delete last element which is empty
-    var arr = data.toString().split('\n');
-    arr = arr.slice(0, arr.length - 1);
-    callback(arr);
-  });
+  var arr = fs.readFileSync(this.paths.list, "utf8").split('\n');
+  arr.pop();
+  return callback(arr);
 };
 
-// determines if url is in site.txt
-exports.isUrlInList = function(url){
-  exports.readListOfUrls(function (data) {
-    urls = data;
-    for (var i = 0; i < urls.length; i++) {
-      console.log(urls[i]);
-      if (urls[i] === url) {
-        return true;
-      }
-    }
-  });
-  return false;
-};
+exports.isUrlInList = function (url, callback) {
+  return exports.readListOfUrls(function (data) {
+    return callback(data);
+  })
+}
 
 // adds url to site.txt
 exports.addUrlToList = function(url){

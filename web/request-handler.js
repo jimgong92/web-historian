@@ -13,8 +13,14 @@ var actions = {
     if (url === '/') {
       url += 'index.html';
     }
-    console.log(archive.isUrlInList('www.google.com'));
-    // console.log(urls);
+
+    // invoke isURLInList
+    // callback that will return a boolean value
+    console.log(archive.isUrlInList('www.google.com', function(data){
+      return data;
+    }));
+
+
     res.writeHead(200, httpHelpers.headers)
     httpHelpers.serveAssets(res, url, function() {});
   },
