@@ -26,23 +26,25 @@ exports.initialize = function(pathsObj){
 // modularize your code. Keep it clean!
 
 // reads from site.txt
-exports.readListOfUrls = function(callback){
+exports.readListOfUrls = function(){
   var arr = fs.readFileSync(this.paths.list, "utf8").split('\n');
   arr.pop();
-  return callback(arr);
+  return arr;
 };
 
-exports.isUrlInList = function (url, callback) {
-  return exports.readListOfUrls(function (data) {
-    return callback(data);
-  })
+exports.isUrlInList = function (url) {
+  var array = exports.readListOfUrls();
+  for (var i = 0; i < array.length; i++) {
+    var string = "" + array[i];
+    if (url === string) return true;
+  }
+  return false;
 }
 
 // adds url to site.txt
 exports.addUrlToList = function(url){
-
   fs.appendFile('../archives/sites.txt', url, function (err) {
-
+    console.log('addUrlList works');
   });
 };
 

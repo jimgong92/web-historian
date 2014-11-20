@@ -16,9 +16,7 @@ var actions = {
 
     // invoke isURLInList
     // callback that will return a boolean value
-    console.log(archive.isUrlInList('www.google.com', function(data){
-      return data;
-    }));
+    console.log(archive.isUrlInList('www.google.com'));
 
 
     res.writeHead(200, httpHelpers.headers)
