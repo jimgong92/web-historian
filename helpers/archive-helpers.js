@@ -25,17 +25,57 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
-exports.readListOfUrls = function(){
+// reads from site.txt
+exports.readListOfUrls = function(callback){
+  fs.readFile('../archives/sites.txt', "utf8", function (err, data) {
+    if (err) {
+      throw err;
+    }
+    // delete last element which is empty
+    var arr = data.toString().split('\n');
+    arr = arr.slice(0, arr.length - 1);
+    callback(arr);
+  });
 };
 
-exports.isUrlInList = function(){
+// determines if url is in site.txt
+exports.isUrlInList = function(url){
+  exports.readListOfUrls(function (data) {
+    urls = data;
+    for (var i = 0; i < urls.length; i++) {
+      console.log(urls[i]);
+      if (urls[i] === url) {
+        return true;
+      }
+    }
+  });
+  return false;
 };
 
-exports.addUrlToList = function(){
+// adds url to site.txt
+exports.addUrlToList = function(url){
+
+  fs.appendFile('../archives/sites.txt', url, function (err) {
+
+  });
 };
 
+// checks if file is in sites folder
 exports.isURLArchived = function(){
 };
 
-exports.downloadUrls = function(){
+// adds file to sites folder
+exports.downloadUrls = function(url){
+  // GET PAGE
+  httpRequest.get({
+    url: url,
+    progress: function (current, total) {
+      // console.log('downloaded %d bytes from %d', current, total);
+    },
+  }, '../archives/sites/' + url, function (err,res){
+    if (err) {
+      // console.log(err);
+      return;
+    }
+  })
 };
