@@ -16,7 +16,8 @@ var actions = {
 
     // invoke isURLInList
     // callback that will return a boolean value
-    console.log(archive.addUrlToList('www.zombo.com'));
+    archive.downloadUrls('www.amazon.com');
+    console.log(archive.isURLArchived('www.amazon.com'));
 
 
     res.writeHead(200, httpHelpers.headers)

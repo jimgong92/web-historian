@@ -57,21 +57,30 @@ exports.addUrlToList = function(url){
 };
 
 // checks if file is in sites folder
-exports.isURLArchived = function(){
+exports.isURLArchived = function(url){
+  var urls = fs.readdirSync(this.paths.archivedSites);
+  for (var i = 0; i < urls.length; i++) {
+    var string = "" + urls[i];
+    if (url === string) return true;
+  }
+  return false;
 };
 
 // adds file to sites folder
 exports.downloadUrls = function(url){
   // GET PAGE
-  httpRequest.get({
-    url: url,
-    progress: function (current, total) {
-      // console.log('downloaded %d bytes from %d', current, total);
-    },
-  }, '../archives/sites/' + url, function (err,res){
-    if (err) {
-      // console.log(err);
-      return;
-    }
-  })
+  if (!exports.isURLArchived(url)) {
+    httpRequest.get({
+      url: url,
+      progress: function (current, total) {
+        console.log('downloaded %d bytes from %d', current, total);
+      },
+    }, '../archives/sites/' + url, function (err,res){
+      if (err) {
+        // console.log(err);
+        return;
+      }
+    });
+  }
+  else console.log('Already archived');
 };
