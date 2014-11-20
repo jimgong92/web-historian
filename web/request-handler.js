@@ -16,7 +16,7 @@ var actions = {
 
     // invoke isURLInList
     // callback that will return a boolean value
-    console.log(archive.isUrlInList('www.google.com'));
+    console.log(archive.addUrlToList('www.zombo.com'));
 
 
     res.writeHead(200, httpHelpers.headers)

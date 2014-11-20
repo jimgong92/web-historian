@@ -43,9 +43,17 @@ exports.isUrlInList = function (url) {
 
 // adds url to site.txt
 exports.addUrlToList = function(url){
-  fs.appendFile('../archives/sites.txt', url, function (err) {
-    console.log('addUrlList works');
-  });
+  if(!exports.isUrlInList(url)) {
+    fs.appendFile(this.paths.list, url + '\n', function (err) {
+      if (err) {
+        console.log("ERROR: " + err);
+      }
+    });
+  }
+  else {
+    //Send back loading.html to user
+    console.log("Already in list.");
+  }
 };
 
 // checks if file is in sites folder
