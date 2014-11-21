@@ -1,4 +1,7 @@
 www.google.com
+www.beeseverywhere.com
+www.hipskates.com
+www.noice.herokuapp.com
+a
 www.amazon.com
-www.hamster.com
-www.zombo.com
+www.geekologie.com
