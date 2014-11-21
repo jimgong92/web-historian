@@ -29,7 +29,7 @@ var actions = {
       if (archive.isURLArchived(url)){
         console.log('served up cache website.');
         // serve up cache website
-        httpHelpers.serveAssets(res, url);
+        httpHelpers.serveAssets(res, '/' + url);
       // else check if isUrlInList(req)
       } else if (archive.isUrlInList(url)) {
         console.log('served up loading page.');
